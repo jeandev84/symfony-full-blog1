@@ -1,0 +1,15 @@
+# Install extension in lunix
+
+$ pwd ( Give us current directory )
+/var/www/symfony-full-blog1
+
+$ ls ( Give all files in current directory )
+install
+
+$ cd Downloads
+$ chmod +x name-of-program-you-want-to-install ( ex: bitmap.run )
+$ ls
+$ ./bitmap.run ( name-of-program-you-want-to-install )
+
+# Download project symfony
+$ composer create-project symfony/website-skeleton course
