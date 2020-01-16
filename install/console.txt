@@ -45,3 +45,150 @@ phpmyadmin
 # Make Entity
 
 $ bin/console make:entity
+
+ Class name of the entity to create or update (e.g. VictoriousPizza):
+ > Post
+
+ created: src/Entity/Post.php
+ created: src/Repository/PostRepository.php
+
+ Entity generated! Now let's add some fields!
+ You can always add more fields later manually or by re-running this command.
+
+ New property name (press <return> to stop adding fields):
+ > title
+
+ Field type (enter ? to see all types) [string]:
+ >
+
+ Field length [255]:
+ >
+
+ Can this field be null in the database (nullable) (yes/no) [no]:
+ >
+
+ updated: src/Entity/Post.php
+
+ Add another property? Enter the property name (or press <return> to stop adding fields):
+ >
+
+
+
+  Success!
+
+
+ Next: When you're ready, create a migration with make:migration
+
+=============================================================
+Must to execute this command :
+$ bin/console doctrine:schema:update --dump-sql
+
+The following SQL statements will be executed:
+
+     CREATE TABLE post (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
+
+
+============================================================
+Will be create or update schema of tables
+$ bin/console doctrine:schema:update --force
+
+ Updating database schema...
+
+     1 query was executed
+
+
+ [OK] Database schema updated successfully!
+
+===========================================================
+
+Create a PostController :
+
+$ bin/console make:controller PostController
+
+
+ created: src/Controller/PostController.php
+ created: templates/post/index.html.twig
+
+
+  Success!
+
+
+ Next: Open your new controller class and add some pages!
+
+==========================================================
+
+Debug Route :
+
+$ bin/console debug:router
+
+ -------------------------- -------- -------- ------ -----------------------------------
+  Name                       Method   Scheme   Host   Path
+ -------------------------- -------- -------- ------ -----------------------------------
+  _preview_error             ANY      ANY      ANY    /_error/{code}.{_format}
+  _wdt                       ANY      ANY      ANY    /_wdt/{token}
+  _profiler_home             ANY      ANY      ANY    /_profiler/
+  _profiler_search           ANY      ANY      ANY    /_profiler/search
+  _profiler_search_bar       ANY      ANY      ANY    /_profiler/search_bar
+  _profiler_phpinfo          ANY      ANY      ANY    /_profiler/phpinfo
+  _profiler_search_results   ANY      ANY      ANY    /_profiler/{token}/search/results
+  _profiler_open_file        ANY      ANY      ANY    /_profiler/open
+  _profiler                  ANY      ANY      ANY    /_profiler/{token}
+  _profiler_router           ANY      ANY      ANY    /_profiler/{token}/router
+  _profiler_exception        ANY      ANY      ANY    /_profiler/{token}/exception
+  _profiler_exception_css    ANY      ANY      ANY    /_profiler/{token}/exception.css
+  home                       ANY      ANY      ANY    /
+  custom                     ANY      ANY      ANY    /custom/{name}
+  post.post                  ANY      ANY      ANY    /post/post/create
+ -------------------------- -------- -------- ------ -----------------------------------
+
+jeandev@jeandev-Lenovo-G580:/var/www/symfony-full-blog1/course$ bin/console debug:router
+ -------------------------- -------- -------- ------ -----------------------------------
+  Name                       Method   Scheme   Host   Path
+ -------------------------- -------- -------- ------ -----------------------------------
+  _preview_error             ANY      ANY      ANY    /_error/{code}.{_format}
+  _wdt                       ANY      ANY      ANY    /_wdt/{token}
+  _profiler_home             ANY      ANY      ANY    /_profiler/
+  _profiler_search           ANY      ANY      ANY    /_profiler/search
+  _profiler_search_bar       ANY      ANY      ANY    /_profiler/search_bar
+  _profiler_phpinfo          ANY      ANY      ANY    /_profiler/phpinfo
+  _profiler_search_results   ANY      ANY      ANY    /_profiler/{token}/search/results
+  _profiler_open_file        ANY      ANY      ANY    /_profiler/open
+  _profiler                  ANY      ANY      ANY    /_profiler/{token}
+  _profiler_router           ANY      ANY      ANY    /_profiler/{token}/router
+  _profiler_exception        ANY      ANY      ANY    /_profiler/{token}/exception
+  _profiler_exception_css    ANY      ANY      ANY    /_profiler/{token}/exception.css
+  home                       ANY      ANY      ANY    /
+  custom                     ANY      ANY      ANY    /custom/{name}
+  post.index                 ANY      ANY      ANY    /post/
+  post.post                  ANY      ANY      ANY    /post/create
+ -------------------------- -------- -------- ------ -----------------------------------
+
+===================================================================================
+Make Form
+
+$ composer require form validator
+$ bin/console make:form
+
+
+ The name of the form class (e.g. BravePizzaType):
+ > PostType
+
+ The name of Entity or fully qualified model class name that the new form will be bound to (empty for none):
+ > Post
+
+ created: src/Form/PostType.php
+
+
+  Success!
+
+
+ Next: Add fields to your form and start using it.
+ Find the documentation at https://symfony.com/doc/current/forms.html
+
+===========================================================================
+Require Profiler
+
+$ composer require profiler
+
+
+
