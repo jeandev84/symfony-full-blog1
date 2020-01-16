@@ -1,0 +1,26 @@
+Request :
+  - attributes : ParameterBag { }
+  - request : ParameterBag
+  - query : ParameterBag { }
+  - server : ServerBag { }
+  - files  : FileBag { }
+  - cookies : ParameterBag {}
+  - headers : HeaderBag {}
+  - content : null
+  - languages : null
+  - charsets : null
+  - encodings : null
+  - acceptableContentTypes : null
+  - pathInfo : "/custom"
+  - requestUri : "/course/public/index.php"/custom
+  - baseUrl : "/course/public/index.php"
+  - basePath : null
+  - method : "GET"
+  - format : null
+  - session : Closure () { }
+  - locale : null
+  - defaultLocale : "en"
+  - isHostValid : true
+  - isForwardedValid : true
+  basePath : "/course/public"
+  format : "html"

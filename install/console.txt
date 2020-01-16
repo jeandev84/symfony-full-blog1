@@ -13,3 +13,35 @@ $ ./bitmap.run ( name-of-program-you-want-to-install )
 
 # Download project symfony
 $ composer create-project symfony/website-skeleton course
+
+======================================================================
+# Require Dump
+$ composer require dump
+
+# Require Server
+$ composer require server
+
+
+======================================================================
+# Create a Database
+
+$ bin/console doctrine:database:create
+
+======================================================================
+Gestion de connection a Mysql en cas d'erreur
+
+https://confluence-atlassan.com/jirab/configuring-database-connection=results-in-error-host-xxxxxxx-is-not-allowed-to-connect-to-this-mysql-server-358908249.html
+
+phpmyadmin
+ - information_schema
+ - mysql (click here)
+    SQL : (paste query here)
+      GRANT ALL PRIVILEGES ON *.* TO root@my_ip IDENTIFIED 'root_password' WITH GRANT OPTION;
+      GRANT ALL PRIVILEGES ON *.* TO root@127.0.0.1 IDENTIFIED 'my_secret_password(123456)' WITH GRANT OPTION;
+
+
+=============================================================================
+
+# Make Entity
+
+$ bin/console make:entity
