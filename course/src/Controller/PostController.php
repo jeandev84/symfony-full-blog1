@@ -5,7 +5,10 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
+use App\Services\FileUploader;
+use App\Services\Notification;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,14 +40,14 @@ class PostController extends AbstractController
     /**
      * @Route("/create", name="create")
      * @param Request $request
+     * @param FileUploader $fileUploader
+     * @param Notification $notification
      * @return Response
      */
-    public function create(Request $request)
+    public function create(Request $request, FileUploader $fileUploader, Notification $notification)
     {
        // create a new post with title
        $post = new Post();
-
-       /* $post->setTitle('This is going to be a title'); */
 
        $form = $this->createForm(PostType::class, $post);
 
@@ -52,18 +55,23 @@ class PostController extends AbstractController
 
        if($form->isSubmitted() && $form->isValid())
        {
-             /* debug($post); */
+             /* dd($post); dd($request->files); */
              $em = $this->getDoctrine()->getManager();
-             $em->persist($post);
-             $em->flush();
+
+             /** @var UploadedFile $file */
+             $file = $request->files->get('post')['attachment']; /* dd($file) */
+
+             // if has file uploaded
+             if($file)
+             {
+                 $filename = $fileUploader->uploadFile($file);
+                 $post->setImage($filename);
+                 $em->persist($post);
+                 $em->flush();
+             }
 
              return $this->redirect($this->generateUrl('post.index'));
        }
-
-
-       // return a response
-       /* return new Response('Post was created'); */
-       /* return $this->redirect($this->generateUrl('post.index')); */
 
        return $this->render('post/create.html.twig', [
            'form' => $form->createView()
@@ -83,18 +91,6 @@ class PostController extends AbstractController
             'post' => $post
         ]);
     }
-
-    /*
-    public function showOld($id, PostRepository $postRepository)
-    {
-        $post = $postRepository->find($id);
-
-        // create the show view
-        return $this->render('post/show.html.twig', [
-            'post' => $post
-        ]);
-    }
-    */
 
 
     /**

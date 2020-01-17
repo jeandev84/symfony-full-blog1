@@ -5,4 +5,8 @@
 {% block body %}
   {#{{ dump(post) }}#}
   <h1>{{ post.title }}</h1>
+  {#<em>{{ post.category.id }}</em>#}
+  <em>{{ post.category }}</em>
+  <hr>
+  <img src="{{ '/uploads/' ~ post.image }}" alt="" width="150">
 {% endblock %}
